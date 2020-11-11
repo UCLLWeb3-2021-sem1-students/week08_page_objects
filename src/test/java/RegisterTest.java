@@ -28,14 +28,17 @@ public class RegisterTest {
 
 	@Test
 	public void test_Register_AllFieldsFilledInCorrectly_UserIsRegistered() {
+		// GIVEN STEP = context
 		SignUpPage signUpPage = PageFactory.initElements(driver, SignUpPage.class);
 		signUpPage.setFirstName("Jan");
 		signUpPage.setLastName("Janssens");
 		signUpPage.setEmail("jan.janssens@hotmail.com");
 		signUpPage.setPassword("1234");
 
+		// WHEN STEP = action
 		HomePage homePage = signUpPage.submitValid();
 
+		// THEN STEP = result
 		assertEquals("Home", homePage.getTitle());
 		PersonOverviewPage personOverviewPage = new PersonOverviewPage(driver);
 		assertTrue(personOverviewPage.containsUserWithEmail("jan.janssens@hotmail.com"));
