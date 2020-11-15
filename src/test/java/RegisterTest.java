@@ -1,3 +1,4 @@
+import domain.model.Person;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,6 +10,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class RegisterTest {
+
 	private WebDriver driver;
 	private String path = "http://localhost:8080/Controller";
 	
@@ -40,14 +42,12 @@ public class RegisterTest {
 
 		// THEN STEP = result
 		assertEquals("Home", homePage.getTitle());
-		PersonOverviewPage personOverviewPage = new PersonOverviewPage(driver);
+		PersonOverviewPage personOverviewPage = PageFactory.initElements(driver, PersonOverviewPage.class);
 		assertTrue(personOverviewPage.containsUserWithEmail("jan.janssens@hotmail.com"));
 	}
 	
 	@Test
 	public void test_Register_FirstNameNotFilledIn_ErrorMessageGivenForFirstNameAndOtherFieldsValueKept(){
-		// werkt niet => dan vindt hij de webelements niet via @FindBy annotation
-		// SignUpPage signUpPage = new SignUpPage(driver);
 		SignUpPage signUpPage = PageFactory.initElements(driver, SignUpPage.class);
 		signUpPage.setFirstName("");
 		signUpPage.setLastName("Janssens");

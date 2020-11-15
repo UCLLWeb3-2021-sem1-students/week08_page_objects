@@ -2,8 +2,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class SignUpPage extends Page {
+
     @FindBy(id="firstName")
     private WebElement firstNameField;
 
@@ -46,12 +48,11 @@ public class SignUpPage extends Page {
 
     public HomePage submitValid() {
         signUpButton.click();
-        return new HomePage(driver);
+        return PageFactory.initElements(driver, HomePage.class);
     }
 
     public void submitInvalid() {
         signUpButton.click();
-        //return new SignUpPage(driver);
     }
 
     public boolean hasErrorMessage (String message) {
