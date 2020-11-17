@@ -1,6 +1,6 @@
 import org.openqa.selenium.WebDriver;
 
-public class Page {
+public abstract class Page {
 
     WebDriver driver;
     String path = "http://localhost:8080/Controller";
